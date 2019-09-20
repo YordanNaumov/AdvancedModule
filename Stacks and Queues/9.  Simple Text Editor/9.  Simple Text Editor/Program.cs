@@ -14,7 +14,7 @@ namespace _9.Simple_Text_Editor
 
             for (int i = 0; i < numberOfCommands; i++)
             {
-                string[] command = Console.ReadLine().Split().ToArray();
+                string[] command = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); 
                 int operationType = int.Parse(command[0]);
 
                 switch (operationType)
