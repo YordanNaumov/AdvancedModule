@@ -10,7 +10,7 @@ namespace _9.Simple_Text_Editor
         {
             int numberOfCommands = int.Parse(Console.ReadLine());
             string currentText = string.Empty;
-            var previousText = new List<string>();
+            var previousText = new Stack<string>();
 
             for (int i = 0; i < numberOfCommands; i++)
             {
@@ -20,12 +20,12 @@ namespace _9.Simple_Text_Editor
                 switch (operationType)
                 {
                     case 1:
-                        previousText.Add(currentText);
+                        previousText.Push(currentText);
                         currentText += command[1];
                         break;
                     case 2:
                         int count = currentText.Length - int.Parse(command[1]);
-                        previousText.Add(currentText);
+                        previousText.Push(currentText);
                         currentText = currentText.Remove(count);
                         break;
                     case 3:
@@ -42,8 +42,7 @@ namespace _9.Simple_Text_Editor
                     case 4:
                         if (previousText.Count > 0)
                         {
-                            currentText = previousText[previousText.Count - 1];
-                            previousText.RemoveAt(previousText.Count - 1);
+                            currentText = previousText.Pop();
                         }
                         break;
                     default:
