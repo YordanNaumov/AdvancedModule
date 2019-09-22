@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _10.Crossroads
 {
@@ -38,7 +35,7 @@ namespace _10.Crossroads
                             {
                                 queueOfCars.Dequeue();
                                 totalCarsPassed++;
-                                if (queueOfCars.Count > 0)
+                                if (queueOfCars.Count > 0 && i < greenLightDuration - 1)
                                 {
                                     carToPass = queueOfCars.Peek();
                                 }
