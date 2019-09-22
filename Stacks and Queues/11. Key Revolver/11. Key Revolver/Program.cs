@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _11.Key_Revolver
 {
@@ -19,7 +17,7 @@ namespace _11.Key_Revolver
             var bullets = new Stack<int>(inputBullets);
             var locks = new Queue<int>(inputLocks);
             bool safeOpened = false;
-            for (int i = 1; i <= inputBullets.Length; i++)//podsiguril sum duljinata na stacka
+            for (int i = 1; i <= inputBullets.Length; i++)
             {
                 if (bullets.Peek() <= locks.Peek())
                 {
@@ -36,7 +34,7 @@ namespace _11.Key_Revolver
                 {
                     Console.WriteLine("Reloading!");
                 }
-                if (locks.Count == 0) //podsiguril sum duljinata na queue
+                if (locks.Count == 0) 
                 {
                     int totalProfit = valueOfIntelligence - i * priceOfBullet;
                     Console.WriteLine($"{bullets.Count} bullets left. Earned ${totalProfit}");
