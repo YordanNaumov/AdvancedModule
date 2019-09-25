@@ -1,97 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace _8.Balanced_Parentheses
+public class Program
 {
-    class Program
+    public static void Main()
     {
-        static void Main(string[] args) 
+        string input = Console.ReadLine();
+
+        if (input.Length % 2 != 0)
         {
-            string input = Console.ReadLine();
-            if (input.Length % 2 == 0)
+            Console.WriteLine("NO");
+            return;
+        }
+
+        var openingBrackets = new Stack<char>();
+        var bracketPairs = new Dictionary<char, char>
+        {
+            {'(', ')'}, {'[', ']'}, {'{', '}'}
+        };
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            char @char = input[i];
+
+            if (@char == '(' || @char == '{' || @char == '[')
             {
-                var queue = new Queue<char>();
-                var alternativeStartQueue = new Queue<char>();
-                var alternativeEndQueue = new Queue<char>();
-                var stack = new Stack<char>();              
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (input[i] == '{' || input[i] == '[' || input[i] == '(')
-                    {
-                        queue.Enqueue(input[i]);
-                        alternativeStartQueue.Enqueue(input[i]);
-                    }
-                    else if (input[i] == '}' || input[i] == ']' || input[i] == ')')
-                    {
-                        stack.Push(input[i]);
-                        alternativeEndQueue.Enqueue(input[i]);
-                    }
-                }
-
-                if (queue.Count == input.Length / 2 && stack.Count == input.Length / 2)
-                {
-                    bool allValid = false;
-                    for (int i = 0; i < input.Length / 2; i++)
-                    {
-                        int possibleDifference = 2;
-                        if (queue.Peek() == 40)
-                        {
-                            possibleDifference = 1;
-                        }
-
-                        if (queue.Peek() + possibleDifference == stack.Peek())
-                        {
-                            queue.Dequeue();
-                            stack.Pop();
-                        }
-                        else
-                        {
-                                break;
-                        }
-
-                        if (queue.Count == 0)
-                        {
-                            Console.WriteLine("YES");
-                            allValid = true;
-                            break;
-                        }
-                    }
-
-                    for (int i = 0; i < input.Length && allValid == false; i++)
-                    {
-                        int possibleDifference = 2;
-                        if (alternativeStartQueue.Peek() == 40)
-                        {
-                            possibleDifference = 1;
-                        }
-
-                        if (alternativeStartQueue.Peek() + possibleDifference == alternativeEndQueue.Peek())
-                        {
-                            alternativeStartQueue.Dequeue();
-                            alternativeEndQueue.Dequeue();
-                        }
-                        else
-                        {
-                            Console.WriteLine("NO");
-                            break;
-                        }
-
-                        if (alternativeStartQueue.Count == 0)
-                        {
-                            Console.WriteLine("YES"); 
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("NO");
-                }
+                openingBrackets.Push(@char);
+            }
+            else if (openingBrackets.Count == 0)
+            {
+                Console.WriteLine("NO");
+                return;
             }
             else
             {
-                Console.WriteLine("NO");
+                char lastOpeningBracket = openingBrackets.Pop();
+                char exprectedBracket = bracketPairs[lastOpeningBracket];
+
+                if (@char != exprectedBracket)
+                {
+                    Console.WriteLine("NO");
+                    return;
+                }
             }
         }
+
+        Console.WriteLine("YES");
     }
 }
