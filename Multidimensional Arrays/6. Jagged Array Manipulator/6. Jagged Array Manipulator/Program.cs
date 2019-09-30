@@ -11,17 +11,17 @@ namespace _6.Jagged_Array_Manipulator
         static void Main(string[] args)
         {
             int numberOfRows = int.Parse(Console.ReadLine());
-            int[][] jagged = new int[numberOfRows][];
+            double[][] jagged = new double[numberOfRows][];
 
             for (int row = 0; row < numberOfRows; row++)
             {
                 int[] inputNumbers = Console
                     .ReadLine()
-                    .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(int.Parse)
                     .ToArray();
 
-                jagged[row] = new int[inputNumbers.Length];
+                jagged[row] = new double[inputNumbers.Length];
 
                 for (int col = 0; col < jagged[row].Length; col++)
                 {
@@ -43,7 +43,7 @@ namespace _6.Jagged_Array_Manipulator
                 {
                     for (int col = 0; col < jagged[row].Length; col++)
                     {
-                        jagged[row][col] /= 2;                        
+                        jagged[row][col] /= 2;
                     }
                     for (int col = 0; col < jagged[row + 1].Length; col++)
                     {
@@ -83,7 +83,7 @@ namespace _6.Jagged_Array_Manipulator
                 }
                 else
                 {
-                    foreach (int[] row in jagged)
+                    foreach (double[] row in jagged)
                     {
                         Console.WriteLine(string.Join(" ", row));
                     }
