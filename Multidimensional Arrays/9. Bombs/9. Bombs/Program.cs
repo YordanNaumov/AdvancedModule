@@ -47,54 +47,53 @@ namespace _9.Bombs
                 {
                     matrix[row, col] = 0;
 
-                }
+                    //-1 -1
+                    if (IsInside(matrix, row - 1, col - 1) && matrix[row - 1, col - 1] > 0)
+                    {
+                        matrix[row - 1, col - 1] -= damageFactor;
+                    }
 
-                //-1 -1
-                if (IsInside(matrix, row - 1, col - 1) && matrix[row - 1, col - 1] > 0)
-                {
-                    matrix[row - 1, col - 1] -= damageFactor;
-                }
+                    //0 -1
+                    if (IsInside(matrix, row, col - 1) && matrix[row, col - 1] > 0)
+                    {
+                        matrix[row, col - 1] -= damageFactor;
+                    }
 
-                //0 -1
-                if (IsInside(matrix, row, col - 1) && matrix[row, col - 1] > 0)
-                {
-                    matrix[row, col - 1] -= damageFactor;
-                }
+                    //1 -1
+                    if (IsInside(matrix, row + 1, col - 1) && matrix[row + 1, col - 1] > 0)
+                    {
+                        matrix[row + 1, col - 1] -= damageFactor;
+                    }
 
-                //1 -1
-                if (IsInside(matrix, row + 1, col - 1) && matrix[row + 1, col - 1] > 0)
-                {
-                    matrix[row + 1, col - 1] -= damageFactor;
-                }
+                    //-1 0
+                    if (IsInside(matrix, row - 1, col) && matrix[row - 1, col] > 0)
+                    {
+                        matrix[row - 1, col] -= damageFactor;
+                    }
 
-                //-1 0
-                if (IsInside(matrix, row - 1, col) && matrix[row - 1, col] > 0)
-                {
-                    matrix[row - 1, col] -= damageFactor;
-                }
+                    //1 0
+                    if (IsInside(matrix, row + 1, col) && matrix[row + 1, col] > 0)
+                    {
+                        matrix[row + 1, col] -= damageFactor;
+                    }
 
-                //1 0
-                if (IsInside(matrix, row + 1, col) && matrix[row + 1, col] > 0)
-                {
-                    matrix[row + 1, col] -= damageFactor;
-                }
+                    //-1 1
+                    if (IsInside(matrix, row - 1, col + 1) && matrix[row - 1, col + 1] > 0)
+                    {
+                        matrix[row - 1, col + 1] -= damageFactor;
+                    }
 
-                //-1 1
-                if (IsInside(matrix, row - 1, col + 1) && matrix[row - 1, col + 1] > 0)
-                {
-                    matrix[row - 1, col + 1] -= damageFactor;
-                }
+                    // 0 1
+                    if (IsInside(matrix, row, col + 1) && matrix[row, col + 1] > 0)
+                    {
+                        matrix[row, col + 1] -= damageFactor;
+                    }
 
-                // 0 1
-                if (IsInside(matrix, row, col + 1) && matrix[row, col + 1] > 0)
-                {
-                    matrix[row, col + 1] -= damageFactor;
-                }
-
-                // 1 1
-                if (IsInside(matrix, row + 1, col + 1) && matrix[row + 1, col + 1] > 0)
-                {
-                    matrix[row + 1, col + 1] -= damageFactor;
+                    // 1 1
+                    if (IsInside(matrix, row + 1, col + 1) && matrix[row + 1, col + 1] > 0)
+                    {
+                        matrix[row + 1, col + 1] -= damageFactor;
+                    }
                 }
             }
 
