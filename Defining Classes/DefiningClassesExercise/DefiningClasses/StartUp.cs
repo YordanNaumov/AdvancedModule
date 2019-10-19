@@ -7,26 +7,49 @@ namespace DefiningClasses
     {
         public static void Main(string[] args)
         {
-            int numberOfLines = int.Parse(Console.ReadLine());
-            var people = new Person();
+            int numberOFCars = int.Parse(Console.ReadLine());
+            Car carList = new Car();
 
-            for (int i = 0; i < numberOfLines; i++)
+            for (int i = 0; i < numberOFCars; i++)
             {
                 string[] input = Console.ReadLine()
                     .Split()
                     .ToArray();
-                string name = input[0];
-                int age = int.Parse(input[1]);
 
-                var person = new Person(name, age);
-                people.AddMember(person);
+                string model = input[0];
+                double fuelAmount = double.Parse(input[1]);
+                double fuelPerKm = double.Parse(input[2]);
+
+                Car car = new Car(model, fuelAmount, fuelPerKm);
+                carList.AddCar(car);
             }
 
-            var oldestMembers = people.GetOldestMembers();
+            string[] commands = Console.ReadLine()
+                .Split()
+                .ToArray();
 
-            foreach (var oldestMember in oldestMembers)
+            while (commands[0] != "End")
             {
-                Console.WriteLine(oldestMember.Name + " - " + oldestMember.Age);
+                string model = commands[1];
+                double km = double.Parse(commands[2]);
+
+                Car currentCar = carList.GetCar(model);
+
+                if (!carList.CanTravel(currentCar, km))
+                {
+                    Console.WriteLine("Insufficient fuel for the drive");
+                }
+
+                commands = Console.ReadLine()
+                .Split()
+                .ToArray();
+            }
+
+            var finalList = carList.GetCarList();
+
+            foreach (var car in finalList)
+            {
+                Console.WriteLine($"{car.Model} {car.FuelAmount:f2} {car.TravelledKm}");
             }
         }
     }
